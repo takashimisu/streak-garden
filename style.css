@@ -550,7 +550,7 @@ input[type="time"] {
 
 /* Mobile: no zoom, reliable tapping */
 html { -webkit-text-size-adjust: 100%; touch-action: manipulation; }
-input, select, textarea, button { font-size: 16px; }
+input[type="text"], input[type="time"], select, textarea { font-size: 16px; }
 .check-label {
   position: relative;
   z-index: 3;
