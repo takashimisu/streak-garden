@@ -547,3 +547,20 @@ input[type="time"] {
     0 0 0 2px rgba(110, 231, 183, 0.35),
     0 0 18px 4px rgba(52, 211, 153, 0.45);
 }
+
+/* Mobile: no zoom, reliable tapping */
+html { -webkit-text-size-adjust: 100%; touch-action: manipulation; }
+input, select, textarea, button { font-size: 16px; }
+.check-label {
+  position: relative;
+  z-index: 3;
+  min-height: 48px;
+  padding: 8px 12px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.check-label input[type="checkbox"] { width: 28px; height: 28px; flex-shrink: 0; }
+.delete-habit { z-index: 4; }
+@media (hover: none) {
+  .habit-card:hover { transform: none; }
+}

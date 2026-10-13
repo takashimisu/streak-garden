@@ -249,7 +249,7 @@ function renderHabits() {
       </div>
       ${canCheck ? `
       <label class="check-label">
-        <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleHabit(${index})">
+        <input type="checkbox" ${isDone ? 'checked' : ''} onclick="event.stopPropagation()" onchange="toggleHabit(${index})">
         ${checkText}
       </label>` : `
       <p class="check-unavailable">${lockedText}</p>
@@ -377,8 +377,16 @@ themeBtn.onclick = () => {
   const root = document.documentElement;
   root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
   if (root.dataset.theme === 'light') delete root.dataset.theme;
+  localStorage.setItem('theme', root.dataset.theme === 'dark' ? 'dark' : 'light');
   applyThemeIcon();
 };
+
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+  if (localStorage.getItem('theme')) return;
+  if (e.matches) document.documentElement.dataset.theme = 'dark';
+  else delete document.documentElement.dataset.theme;
+  applyThemeIcon();
+});
 
 applyThemeIcon();
 syncDayPickerUI();
