@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Streak Garden — твои привычки</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="water.css">
+</head>
+
+<body>
+  <header>
+    <h1>Streak Garden</h1>
+    <button id="toggle-theme">🌙</button>
+  </header>
+
+  <main>
+    <section id="habits">
+      <h2>Мои привычки</h2>
+      <div id="day-filter" class="day-picker day-filter" role="group" aria-label="Показать день">
+        <button type="button" class="day-option" data-day="0">Пн</button>
+        <button type="button" class="day-option" data-day="1">Вт</button>
+        <button type="button" class="day-option" data-day="2">Ср</button>
+        <button type="button" class="day-option" data-day="3">Чт</button>
+        <button type="button" class="day-option" data-day="4">Пт</button>
+        <button type="button" class="day-option" data-day="5">Сб</button>
+        <button type="button" class="day-option" data-day="6">Вс</button>
+      </div>
+      <div id="habit-list"></div>
+      <button id="add-habit">+ Добавить привычку</button>
+    </section>
+
+    <section id="stats">
+      <h2>Прогресс</h2>
+      <div id="heatmap"></div>
+      <p id="stats-text">Здесь будет твоя статистика за неделю и месяц...</p>
+    </section>
+  </main>
+
+  <!-- Модальное окно добавления привычки -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="close-modal">&times;</span>
+      <h2>Новая привычка</h2>
+      <input type="text" id="habit-name" placeholder="Например: Выпить 2 л воды" autocomplete="off">
+      <p class="day-picker-label">День недели</p>
+      <div id="day-picker" class="day-picker" role="group" aria-label="День недели">
+        <button type="button" class="day-option" data-day="0">Пн</button>
+        <button type="button" class="day-option" data-day="1">Вт</button>
+        <button type="button" class="day-option" data-day="2">Ср</button>
+        <button type="button" class="day-option" data-day="3">Чт</button>
+        <button type="button" class="day-option" data-day="4">Пт</button>
+        <button type="button" class="day-option" data-day="5">Сб</button>
+        <button type="button" class="day-option" data-day="6">Вс</button>
+      </div>
+      <p class="day-picker-label">Время начала</p>
+      <input type="time" id="habit-time" value="09:00">
+      <button id="save-habit">Сохранить</button>
+    </div>
+  </div>
+
+  <script src="water.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

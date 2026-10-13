@@ -1,0 +1,47 @@
+/* Streak Garden — water wave animation for day cubes
+   Wave strip on the fill surface, moves only while the fill changes,
+   bottom fades into the fill, colour matches the top of the fill. */
+
+/* Gentle water waves on the fill surface (one seamless strip, overlaps the fill) */
+.day::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 200%;
+  height: 10px;
+  bottom: calc(var(--fill) - 6px);
+  background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2080%2010%27%20preserveAspectRatio%3D%27none%27%3E%3Cpath%20d%3D%27M0%204%20Q10%200%2020%204%20T40%204%20T60%204%20T80%204%20V10%20H0%20Z%27%20fill%3D%27%2334d399%27/%3E%3C/svg%3E") no-repeat;
+  background-size: 100% 100%;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  will-change: transform;
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 65%);
+  mask-image: linear-gradient(to top, transparent 0%, #000 65%);
+  transition: bottom 0.8s ease-in-out, opacity 0.25s ease;
+  animation: none;
+}
+
+[data-theme="dark"] .day::before {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2080%2010%27%20preserveAspectRatio%3D%27none%27%3E%3Cpath%20d%3D%27M0%204%20Q10%200%2020%204%20T40%204%20T60%204%20T80%204%20V10%20H0%20Z%27%20fill%3D%27%236ee7b7%27/%3E%3C/svg%3E");
+}
+
+/* Waves are visible and move only while the fill is changing */
+.day.waving::before {
+  opacity: 1;
+  animation: waveDrift 1.2s ease-in-out 1, waveBob 0.6s ease-in-out 2;
+}
+
+@keyframes waveDrift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes waveBob {
+  0%, 100% { margin-bottom: 0; }
+  50%      { margin-bottom: 1.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .day::before { animation: none; }
+}
